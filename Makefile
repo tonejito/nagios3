@@ -17,6 +17,8 @@ RM=/bin/rm
 ECHO=/bin/echo
 GIT=/usr/bin/git
 MKDIR=/bin/mkdir
+CHMOD=/bin/chmod
+CHGRP=/bin/chgrp
 FIND=/usr/bin/find
 XARGS=/usr/bin/xargs
 A2ENMOD=/usr/sbin/a2enmod
@@ -25,8 +27,14 @@ NAGIOS3=/usr/sbin/nagios3
 SERVICE=/usr/sbin/service
 APTITUDE=/usr/bin/aptitude
 
-restart:	test
+.PHONY:	map
+
+restart:	permissions test
 	${SERVICE} ${SVC} restart
+
+permissions:
+	${CHMOD} -c  0640  resource.cfg
+	${CHGRP} -c nagios resource.cfg
 
 test:	nagios.cfg
 	${NAGIOS3} --verify-config ${CFG_FILE}
