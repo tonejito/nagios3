@@ -45,8 +45,6 @@ logos:
 	${LN} -vsf ../../../../../../${CFG_DIR}/logos/local ${HTDOCS_DIR}/images/logos/local
 
 deps-apt:
-	${APTITUDE} --assume-yes install make
-	${APTITUDE} --assume-yes install git
 	${APTITUDE} --assume-yes install nagios3 nagios-plugins+M nagios-plugins-basic+M nagios-plugins-contrib monitoring-plugins+M monitoring-plugins-basic+M monitoring-plugins-standard+M
 	${APTITUDE} --assume-yes install libgd-tools
 

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+TEE=/usr/bin/tee
+WGET=/usr/bin/wget
+MAKE=/usr/bin/make
+APTITUDE=/usr/bin/aptitude
+
+URL=https://raw.githubusercontent.com/tonejito/nagios3/master/Makefile
+
+$APTITUDE update
+$APTITUDE --assume-yes install git make
+$WGET -c $URL
+$MAKE deps 2>&1 | $TEE make.log
