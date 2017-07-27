@@ -36,9 +36,10 @@ deps:	deps-apt clone map logos apache-cfg
 clone:
 	${MV} $(CFG_DIR) ~/nagios3.$(shell date '+%s')
 	${GIT} clone $(GIT_REPO_URL) $(CFG_DIR)
+	cd $(CFG_DIR) ; ${GIT} submodule update --init --recursive
 
 map:
-	${LN} -vsf ../../../..${CFG_DIR}/map.php ${HTDOCS_DIR}/map.php
+	${LN} -vsf ../../../..${CFG_DIR}/map/statusmap.php ${HTDOCS_DIR}/map.php
 
 logos:
 	${MKDIR} -vp ${HTDOCS_DIR}/images/logos
