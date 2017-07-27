@@ -30,11 +30,14 @@ APTITUDE=/usr/bin/aptitude
 .PHONY:	map
 
 restart:	permissions test
+	${SERVICE} apache2 reload
 	${SERVICE} ${SVC} restart
 
 permissions:
-	${CHMOD} -c  0640  resource.cfg
+	${CHMOD} -c 0640   resource.cfg
 	${CHGRP} -c nagios resource.cfg
+	${CHMOD} -c 0640     .htpasswd
+	${CHGRP} -c www-data .htpasswd
 
 test:	nagios.cfg
 	${NAGIOS3} --verify-config ${CFG_FILE}
