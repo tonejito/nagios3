@@ -38,12 +38,11 @@ clone:
 	${GIT} clone $(GIT_REPO_URL) $(CFG_DIR)
 
 map:
-	cd ${HTDOCS_DIR}
-	${LN} -vs ../../../..${CFG_DIR}/map.php
+	${LN} -vsf ../../../..${CFG_DIR}/map.php ${HTDOCS_DIR}/map.php
 
 logos:
 	${MKDIR} -vp ${HTDOCS_DIR}/images/logos
-	${LN} -vs ../../../../../../${CFG_DIR}/logos/local ${HTDOCS_DIR}/images/logos/local
+	${LN} -vsf ../../../../../../${CFG_DIR}/logos/local ${HTDOCS_DIR}/images/logos/local
 
 deps-apt:
 	${APTITUDE} --assume-yes install make
