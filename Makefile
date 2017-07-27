@@ -9,6 +9,7 @@ CFG_DIR=/etc/nagios3
 CFG_FILE=${CFG_DIR}/nagios.cfg
 SHARE_DIR=/usr/share/nagios3
 HTDOCS_DIR=${SHARE_DIR}/htdocs
+HTTPD_CONF=nagios3.conf
 
 LN=/bin/ln
 MV=/bin/mv
@@ -19,6 +20,7 @@ MKDIR=/bin/mkdir
 FIND=/usr/bin/find
 XARGS=/usr/bin/xargs
 A2ENMOD=/usr/sbin/a2enmod
+A2ENCONF=/usr/sbin/a2enconf
 NAGIOS3=/usr/sbin/nagios3
 SERVICE=/usr/sbin/service
 APTITUDE=/usr/bin/aptitude
@@ -51,4 +53,5 @@ deps-apt:
 
 apache-cfg:
 	${A2ENMOD} mpm_prefork auth_basic auth_digest
+	${A2ENCONF} $(HTTPD_CONF)
 	${SERVICE} apache2 restart
